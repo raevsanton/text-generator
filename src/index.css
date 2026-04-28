@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #101828;
+  --color-secondary: #667085;
+  --color-tertiary: #475467;
+  --color-bg-gray: #f2f4f7;
+  --color-bg-success-light: #edfcf2;
+  --color-border-base: #eaecf0;
+  --color-border-dark: #d0d5dd;
+  --color-brand-primary: #087443;
+  --color-brand-hover: #065f36;
+  --color-error-base: #f04438;
+  --color-error-light: #fda29b;
+
+  --font-fixel-text: "FixelText", ui-sans-serif, system-ui, sans-serif;
+  --font-fixel-display: "FixelDisplay", ui-sans-serif, system-ui, sans-serif;
+}
+
+@font-face {
+  font-family: "FixelText";
+  src: url("./assets/fonts/FixelText-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FixelText";
+  src: url("./assets/fonts/FixelText-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FixelText";
+  src: url("./assets/fonts/FixelText-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FixelDisplay";
+  src: url("./assets/fonts/FixelDisplay-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-fixel-text);
+    font-weight: 400;
+    max-width: 1120px;
+    margin: 32px auto 0;
+    font-size: 18px;
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
