@@ -27,7 +27,7 @@ export const Applications = () => {
         ) : (
           <div className="grid grid-cols-1 gap-y-6 md:grid-cols-2 md:gap-x-4">
             {applications.map((app) => (
-              <Card key={app.id} id={app.id} company={app.company} content={app.content} />
+              <Card key={app.id} id={app.id} content={app.content} />
             ))}
           </div>
         )}

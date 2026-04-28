@@ -4,7 +4,6 @@ import { ButtonCopy } from "@/ui/ButtonCopy";
 
 interface ICardProps {
   id: string;
-  company: string;
   content: string;
 }
 
