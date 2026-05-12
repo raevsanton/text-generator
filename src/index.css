@@ -12,6 +12,22 @@
   --color-brand-hover: #065f36;
   --color-error-base: #f04438;
   --color-error-light: #fda29b;
+  --color-error-dark: #d92d20;
+  --color-error-100: #fee4e2;
+  --color-text: #101828;
+  --color-gray-25: #f9fafb;
+  --color-gray-400: #98a2b3;
+  --color-gray-700: #344054;
+  --color-success-base: #12b76a;
+  --color-success-light: #d1fadf;
+  --color-success-100: #d3f8df;
+  --color-success-200: #73e2a3;
+  --color-overlay: #0c111d;
+
+  --shadow-focus-success:
+    0px 0px 0px 4px var(--color-success-100), 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --shadow-focus-error:
+    0px 0px 0px 4px var(--color-error-100), 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 
   --font-fixel-text: "FixelText", ui-sans-serif, system-ui, sans-serif;
   --font-fixel-display: "FixelDisplay", ui-sans-serif, system-ui, sans-serif;

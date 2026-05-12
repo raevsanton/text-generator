@@ -1,28 +1,18 @@
-interface FormData {
-  jobTitle: string;
-  company: string;
-  skills: string;
-  details: string;
-}
+import type { FormValues } from "@/store/types";
 
 const SYSTEM_PROMPT = `You are an expert career consultant and professional cover letter writer with 15+ years of experience. 
 Write a compelling, personalized cover letter. 
 - Sounds natural and human.
 - Tailored to the company and role.
-- Concise (3-4 paragraphs).
-- Directly start with "Dear [Company] Team,".
-- Professional sign-off.`;
+- Concise (1-2 paragraphs).
+- Directly start with "Dear [Company] Team,".`;
 
-import { generateTemplate } from "@/components/Form/generateTemplate";
-
-export const generateCoverLetter = async (formData: FormData): Promise<string> => {
+export const generateCoverLetter = async (
+  formData: FormValues,
+  signal?: AbortSignal,
+): Promise<string> => {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   const apiUrl = import.meta.env.VITE_GEMINI_API_URL;
-
-  const fallback = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    return generateTemplate(formData);
-  };
 
   const userPrompt = `Write a cover letter for:
     Position: ${formData.jobTitle}
@@ -47,6 +37,7 @@ export const generateCoverLetter = async (formData: FormData): Promise<string> =
           },
         ],
       }),
+      signal,
     });
 
     const data = await response.json();
@@ -60,10 +51,9 @@ export const generateCoverLetter = async (formData: FormData): Promise<string> =
     if (text) return text.trim();
     throw new Error("Empty response from Gemini");
   } catch (error) {
-    console.error(
-      "Gemini Direct Fetch Failed:",
-      error instanceof Error ? error.message : String(error),
-    );
-    return fallback();
+    if (error instanceof Error && error.name === "AbortError") {
+      throw error;
+    }
+    throw error;
   }
 };

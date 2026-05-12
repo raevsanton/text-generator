@@ -1,4 +1,6 @@
 export const BUTTON_VARIANT = {
-  PRIMARY: 0,
-  SECONDARY: 1,
+  PRIMARY: "primary",
+  SECONDARY: "secondary",
+  DANGER: "danger",
+  GHOST: "ghost",
 } as const;

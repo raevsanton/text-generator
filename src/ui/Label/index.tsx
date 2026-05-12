@@ -8,7 +8,7 @@ interface LabelProps {
 
 export const Label = ({ id, children, className }: LabelProps) => {
   return (
-    <label htmlFor={id} className={cn("mb-2 block font-bold text-[#344054] text-sm", className)}>
+    <label htmlFor={id} className={cn("mb-2 block font-bold text-gray-700 text-sm", className)}>
       {children}
     </label>
   );

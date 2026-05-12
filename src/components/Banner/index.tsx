@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import plusIcon from "@/assets/images/plus.svg";
 import { useStore } from "@/store/useStore";
 import { Button } from "@/ui/Button";
-import { cn } from "@/utils/cn";
-import { MAX_APPLICATIONS_COUNT } from "@/utils/consts";
+import { ProgressIndicator } from "@/ui/ProgressIndicator";
+import { MAX_APPLICATIONS_COUNT, ROUTES } from "@/utils/consts";
 
 export const Banner = () => {
   const applications = useStore((state) => state.applications);
@@ -15,29 +15,23 @@ export const Banner = () => {
       <p className="mx-auto mt-3 max-w-120 text-secondary text-sm md:mt-4 md:text-base">
         Generate and send out couple more job applications today to get hired faster
       </p>
-      <Link to="/new" className="mx-auto block w-fit">
+      <Link to={ROUTES.NEW_APPLICATION} className="mx-auto block w-fit">
         <Button
           size="lg"
           className="mt-4"
-          leadingIconClassName="h-6 w-6"
-          leadingIcon={<img src={plusIcon} alt="plus" />}
+          iconClassName="h-6 w-6"
+          leftIcon={<img src={plusIcon} alt="plus" />}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           Create new
         </Button>
       </Link>
       <div className="mt-8 flex flex-col items-center gap-2">
-        <div className="flex items-center gap-2">
-          {[...Array(MAX_APPLICATIONS_COUNT)].map((_, i) => (
-            <div
-              key={i}
-              className={cn(
-                "h-2 w-8 rounded-sm bg-primary",
-                i >= applicationsCount && "opacity-25",
-              )}
-            />
-          ))}
-        </div>
+        <ProgressIndicator
+          current={applicationsCount}
+          max={MAX_APPLICATIONS_COUNT}
+          variant="tiles"
+        />
         <p className="text-secondary">
           {applicationsCount} out of {MAX_APPLICATIONS_COUNT}
         </p>

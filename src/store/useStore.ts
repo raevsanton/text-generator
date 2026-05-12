@@ -1,19 +1,17 @@
 import { nanoid } from "nanoid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { FormValues } from "./types";
 
-export interface Application {
+export interface Application extends Omit<FormValues, "skills" | "details"> {
   id: string;
-  company: string;
-  jobTitle: string;
   content: string;
-  createdAt: string;
 }
 
 interface AppState {
   applications: Application[];
 
-  addApplication: (app: Omit<Application, "id" | "createdAt">) => void;
+  addApplication: (app: Omit<Application, "id">) => void;
   deleteApplication: (id: string) => void;
 }
 
@@ -28,7 +26,6 @@ export const useStore = create<AppState>()(
             {
               ...app,
               id: nanoid(),
-              createdAt: new Date().toISOString(),
             },
             ...state.applications,
           ],
